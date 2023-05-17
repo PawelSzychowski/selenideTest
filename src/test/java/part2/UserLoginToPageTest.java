@@ -6,15 +6,18 @@ import static team.jit.qa.meeting.LoginPage.LOGIN_BUTTON_SELECTOR;
 import com.google.inject.Inject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import team.jit.qa.meeting.InventoryPage;
 import team.jit.qa.meeting.LoginPage;
 
 public class UserLoginToPageTest extends TestBase {
 
   private final LoginPage loginPage;
+  private final InventoryPage inventoryPage;
 
   @Inject
-  public UserLoginToPageTest(LoginPage loginPage) {
+  public UserLoginToPageTest(LoginPage loginPage, InventoryPage inventoryPage) {
     this.loginPage = loginPage;
+    this.inventoryPage = inventoryPage;
   }
 
   @Test
@@ -40,6 +43,34 @@ public class UserLoginToPageTest extends TestBase {
         .setPassword("TestValue")
         .click(LOGIN_BUTTON_SELECTOR);
     String actual = loginPage.getTextFromSelector(ERROR_MESSAGE_CONTAINER);
+    //then
+    Assert.assertEquals(actual, expected);
+  }
+
+  @Test
+  public void loginWithProperCredentials() {
+    //given
+    String expected = "Products";
+    //when
+    loginPage.openPage();
+    loginPage.setUsername("standard_user")
+        .setPassword("secret_sauce")
+        .click(LOGIN_BUTTON_SELECTOR);
+    String actual = inventoryPage.getTitleText();
+    //then
+    Assert.assertEquals(actual, expected);
+  }
+
+  @Test
+  public void loginWithProperCredentialsTimeout() {
+    //given
+    String expected = "Products";
+    //when
+    loginPage.openPage();
+    loginPage.setUsername("performance_glitch_user")
+        .setPassword("secret_sauce")
+        .click(LOGIN_BUTTON_SELECTOR);
+    String actual = inventoryPage.getTitleText();
     //then
     Assert.assertEquals(actual, expected);
   }
