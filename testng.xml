@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Practice Suite">
-  <test name="Test Basics">
+<suite name="QA meeting">
+  <test name="Part 1">
     <classes>
       <class name="part1.BasicTest"/>
+    </classes>
+  </test> <!-- Test -->
+  <test name="Part 2">
+    <classes>
+      <class name="part2.UserBuyProductTest"/>
+      <class name="part2.UserLoginToPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

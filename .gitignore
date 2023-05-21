@@ -2,3 +2,5 @@ target/
 *.iml
 .idea/*
 build/
+allure-results/
+.allure
