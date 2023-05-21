@@ -21,6 +21,10 @@ public class InventoryPage extends PageBase {
     return $(TITLE_SELECTOR).shouldBe(Condition.exist, Duration.ofSeconds(10)).getText();
   }
 
+  public void validateTitleText(String expectedText) {
+    $(TITLE_SELECTOR).shouldBe(Condition.text(expectedText), Duration.ofSeconds(10));
+  }
+
   public InventoryPage clickOnElement(By selector) {
     $(selector).click();
     return this;

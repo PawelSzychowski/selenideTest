@@ -74,4 +74,16 @@ public class UserLoginToPageTest extends TestBase {
     //then
     Assert.assertEquals(actual, expected);
   }
+  @Test
+  public void loginWithProperCredentialsShouldFail() {
+    //given
+    String expected = "wrong value";
+    //when
+    loginPage.openPage();
+    loginPage.setUsername("standard_user")
+        .setPassword("secret_sauce")
+        .click(LOGIN_BUTTON_SELECTOR);
+    //then
+    inventoryPage.validateTitleText(expected);
+  }
 }
